@@ -1,35 +1,52 @@
 /**
+ * Created by borys-duda
  */
 
-import thunk from 'redux-thunk';
-import { applyMiddleware, createStore } from 'redux';
-import promise from './promise';
-import array from './array';
-import analytics from './analytics';
-import reducers from '../reducers';
-import { createLogger } from 'redux-logger';
-import { persistStore, autoRehydrate } from 'redux-persist';
-import {
-  AsyncStorage,
-} from 'react-native';
+import {autoRehydrate, persistStore} from "redux-persist-immutable";
+import {combineReducers} from "redux-immutable";
+import createActionBuffer from "redux-action-buffer";
+import {REHYDRATE} from "redux-persist/src/constants";
+import Immutable from "immutable";
+import {applyMiddleware, compose, createStore} from "redux";
+import {AsyncStorage} from "react-native";
+import createSagaMiddleware from "redux-saga";
+import LoginReducer from "../reducers/loginReducer";
 
-const isDebuggingInChrome = __DEV__ && !!window.navigator.userAgent;
+import { loginFlow } from "../reducers/sagas/loginSaga";
 
-const logger = createLogger({
-  predicate: (getState, action) => isDebuggingInChrome,
-  collapsed: true,
-  duration: true,
+const combinedReducers = combineReducers({
+  login: LoginReducer,
 });
 
-const createDStore = applyMiddleware(thunk, promise, array, analytics, logger)(createStore);
+const initialState = new Immutable.Map({
+  login: Immutable.Map({
+    isLoggedIn: false,
+    token: '',
+    loginError: {},
+    email:'',
+    password:'',
+    authorizationId:''
+  }),
 
-export default function configureStore(onComplete: ?() => void) {
-  // TODO(frantic): reconsider usage of redux-persist, maybe add cache breaker
-  const store = autoRehydrate()(createDStore)(reducers);
-  persistStore(store, { storage: AsyncStorage }, onComplete);
-  if (isDebuggingInChrome) {
-    window.store = store;
-  }
-  return store;
+});
+
+export default function configureStore() {
+  const sagaMiddleware = createSagaMiddleware();
+  const store = createStore(
+    combinedReducers,
+    initialState,
+    compose(applyMiddleware(sagaMiddleware, createActionBuffer(REHYDRATE)), autoRehydrate({log: true})));
+
+  persistStore(
+    store,
+    {
+      storage: AsyncStorage,
+      blacklist: ['root'],
+    }
+  );
+  return {
+    ...store, runSaga: [
+      sagaMiddleware.run(loginFlow),
+    ]
+  };
 }
-

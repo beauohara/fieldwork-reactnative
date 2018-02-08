@@ -1,15 +1,11 @@
 /**
- * Created By Borys
- *
+ * Created by borys-duda
  */
 
-// type ParseObject = Object;
-
-export type Action =
- { type: 'POSITION_CHANGED', data: Object }
- | { type: 'AUTH_LOGIN', data: Object }
-
-export type Dispatch = (action: Action | ThunkAction | PromiseAction | Array<Action>) => any;
-export type GetState = () => Object;
-export type ThunkAction = (dispatch: Dispatch, getState: GetState) => any;
-export type PromiseAction = Promise<Action>;
+export const LOGIN_ACTION = "LOGIN";
+export const LOGOUT_ACTION = "LOGOUT";
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
+export const LOGIN_ERROR = "LOGIN_ERROR";
+export const LOGOUT_ERROR = "LOGOUT_ERROR";
+export const PROGRESS = "PROGRESS";

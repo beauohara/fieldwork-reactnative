@@ -3,12 +3,13 @@ import { Provider } from 'react-redux';
 import App from './app';
 import configureStore from './store/configureStore';
 
+const store = configureStore();
+
 export default class Root extends Component {
   constructor() {
     super();
     this.state = {
-      isLoading: true,
-      store: configureStore(() => this.setState({ isLoading: false })),
+
     };
   }
   render() {
@@ -16,7 +17,7 @@ export default class Root extends Component {
       return null;
     }
     return (
-      <Provider store={this.state.store}>
+      <Provider store={store}>
         <App />
       </Provider>
     );
