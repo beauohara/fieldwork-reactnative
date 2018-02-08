@@ -1,14 +1,9 @@
-import type { ThunkAction } from './types';
-
-function changeAuthData(data: Object): ThunkAction {
+export const login = (data: Object) => {
   return (dispatch) => {
     dispatch({
-      type: 'CHANGE_DATA',
+      type: 'AUTH_LOGIN',
       data,
     });
   };
 }
 
-module.exports = {
-  changeAuthData,
-};

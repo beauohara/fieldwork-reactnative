@@ -3,13 +3,10 @@
  * @providesModule AppActions
  */
 
-const position = require('./position');
-const token = require('./token');
-const authentication = require('./authentication');
-const venues = require('./venues');
-module.exports = {
-  ...position,
-  ...token,
-  ...authentication,
-  ...venues,
+import authentication from './authentication';
+
+const actions = {
+  ...authentication
 };
+
+export default actions;

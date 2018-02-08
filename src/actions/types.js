@@ -3,15 +3,11 @@
  *
  */
 
-
 // type ParseObject = Object;
 
 export type Action =
  { type: 'POSITION_CHANGED', data: Object }
- | { type: 'CHANGE_DATA', data: Object }
- | { type: 'SET_VENUES', data: Array }
- | { type: 'ADD_VENUES', data: Array }
- | { type: 'REQUEST_API_CALL', params: Object }
+ | { type: 'AUTH_LOGIN', data: Object }
 
 export type Dispatch = (action: Action | ThunkAction | PromiseAction | Array<Action>) => any;
 export type GetState = () => Object;
