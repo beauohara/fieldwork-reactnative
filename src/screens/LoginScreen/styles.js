@@ -1,41 +1,51 @@
 import { StyleSheet } from 'react-native';
-import {CommonStyles, Colors, Metrics} from '../../themes';
+import { CommonStyles, Colors, Metrics } from '../../themes';
 
 export default StyleSheet.create({
   ...CommonStyles.screen,
   container: {
     flexDirection: 'column',
     flex: 1,
+    backgroundColor: Colors.background,
   },
 
   logoPanel: {
-    backgroundColor: Colors.primary,
     height: Metrics.screenHeight / 3,
+    paddingBottom: 30,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
   },
+
   imgLogo: {
     width: Metrics.screenWidth / 2,
   },
+
   formPanel: {
     flex: 1,
-    backgroundColor: Colors.secondary,
+  },
+
+  inputContainer: {
+    backgroundColor: Colors.white,
+    borderTopWidth: 1,
+    borderTopColor: Colors.lightGray,
+  },
+
+  inputfield: {
+    height: 42,
+    color: Colors.secondary,
     paddingLeft: 20,
     paddingRight: 20,
   },
-  inputfield: {
 
-  },
   btnLogin: {
-    position: 'absolute',
-    right: 20,
-    bottom: 50
+    backgroundColor: Colors.primary,
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 42,
   },
+
   btnTitle: {
     color: Colors.white,
-    fontSize: 16,
-    textDecorationLine: 'underline',
+    fontSize: 13,
   },
-
-
 });

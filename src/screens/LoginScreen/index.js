@@ -28,24 +28,24 @@ export class LoginScreen extends Component {
           <Image source={Images.logoFieldwork} style={styles.imgLogo} resizeMode='contain' />
         </View>
         <View style={styles.formPanel}>
-          <TextField
-            label='E-mail'
-            style={styles.inputfield}
-            textColor={Colors.white}
-            tintColor={Colors.white}
-            baseColor={Colors.lightGray}
-            onChangeText={text => this.setState({ email: text })}
-            value={this.state.email}
-          />
-          <TextField
-            label='password'
-            style={styles.inputfield}
-            textColor={Colors.white}
-            tintColor={Colors.white}
-            baseColor={Colors.lightGray}
-            onChangeText={text => this.setState({ password: text })}
-            value={this.state.password}
-          />
+          <View style={styles.inputContainer}>
+            <TextInput
+              placeholder='E-mail'
+              placeholderTextColor={Colors.primary}
+              style={styles.inputfield}
+              onChangeText={text => this.setState({ email: text })}
+              value={this.state.email}
+            />
+          </View>
+          <View style={styles.inputContainer}>
+            <TextInput
+              placeholder='Password'
+              placeholderTextColor={Colors.primary}
+              style={styles.inputfield}
+              onChangeText={text => this.setState({ password: text })}
+              value={this.state.password}
+            />
+          </View>
           <TouchableOpacity
             style={styles.btnLogin}
             onPress={this.onPressLogin}
@@ -54,7 +54,7 @@ export class LoginScreen extends Component {
               style={styles.btnTitle}
               textDecorationLine='underline'
             >
-              Log in
+              SIGN IN
             </Text>
           </TouchableOpacity>
         </View>
