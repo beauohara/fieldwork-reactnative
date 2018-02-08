@@ -5,13 +5,10 @@
 
 import React, { Component } from 'react';
 import {
-  AppState,
   StyleSheet,
   StatusBar,
   View,
 } from 'react-native';
-import { connect } from 'react-redux';
-import axios from 'axios';
 
 import Navigator from './navigator';
 import { Colors } from './themes';

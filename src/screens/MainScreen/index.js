@@ -2,9 +2,8 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
 import AppContainer from '../AppContainer';
-import { NavItems, NativeComponentTest, GeolocationTest } from '../../components';
+import { NavItems } from '../../components';
 import styles from './styles';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 
 export class MainScreen extends Component {
   constructor(props) {
