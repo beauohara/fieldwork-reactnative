@@ -15,17 +15,16 @@ import LoginReducer from "../reducers/loginReducer";
 import { loginFlow } from "../reducers/sagas/loginSaga";
 
 const combinedReducers = combineReducers({
-  login: LoginReducer,
+  auth: LoginReducer,
 });
 
 const initialState = new Immutable.Map({
-  login: Immutable.Map({
+  auth: Immutable.Map({
     isLoggedIn: false,
-    token: '',
     loginError: {},
     email:'',
     password:'',
-    authorizationId:''
+    api_key:''
   }),
 
 });
@@ -35,7 +34,12 @@ export default function configureStore() {
   const store = createStore(
     combinedReducers,
     initialState,
-    compose(applyMiddleware(sagaMiddleware, createActionBuffer(REHYDRATE)), autoRehydrate({log: true})));
+    compose(applyMiddleware(sagaMiddleware)));
+    /**
+      * remove persist temporarily
+      * , createActionBuffer(REHYDRATE)), autoRehydrate({log: true})));
+      */
+    // compose(applyMiddleware(sagaMiddleware, createActionBuffer(REHYDRATE)), autoRehydrate({log: true})));
 
   persistStore(
     store,

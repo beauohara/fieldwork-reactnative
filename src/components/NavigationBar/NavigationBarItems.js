@@ -2,7 +2,7 @@ import React from 'react';
 import { TouchableOpacity, Keyboard, Image, Text } from 'react-native';
 import IconFontAwesome from 'react-native-vector-icons/FontAwesome';
 import styles from './styles';
-import { Colors } from '../../themes';
+import { Colors, Images } from '../../themes';
 
 function openDrawer(navigation) {
   Keyboard.dismiss();
@@ -24,7 +24,7 @@ export default {
   hamburgerButton(navigation) {
     return () => (
       <TouchableOpacity onPress={() => openDrawer(navigation)} style={styles.navButtonLeft}>
-        <IconFontAwesome name="navicon" size={20} color={Colors.primary} />
+        <Image source={Images.hamburger} style={styles.navButtonImage} resizeMode='contain' />
       </TouchableOpacity>
     );
   },

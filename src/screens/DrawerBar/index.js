@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, ScrollView, Image } from 'react-native';
 import { DrawerButton } from '../../components';
 import AppContainer from '../AppContainer';
 import styles, { Colors } from './styles';
+import { Images } from '../../themes';
 import menuItems from './menu';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -24,6 +25,7 @@ export class DrawBar extends Component {
     }
     return null;
   };
+
   navigate(screen) {
     const { state } = this.props.navigation;
     const { index, routes } = state;
@@ -33,6 +35,7 @@ export class DrawBar extends Component {
       this.onCloseDrawerBar();
     }
   }
+
   isCurrentPage(type) {
     const { activeItemKey } = this.props;
     switch (type) {
@@ -47,6 +50,7 @@ export class DrawBar extends Component {
     }
     return false;
   }
+
   renderDrawerSection(section) {
     return (
       <View style={styles.sectionContainer} key={section.title}>
@@ -69,16 +73,31 @@ export class DrawBar extends Component {
       </View>
     );
   }
+
+  renderHeader = () => (
+    <View style={styles.logoHeaderContent}>
+      <Image style={styles.logoImage} source={Images.logo} resizeMode='contain' />
+    </View>
+  );
+
+  renderFooter = () => (
+    <View style={styles.logoFooterContent}>
+      <Image style={styles.logoPaperwork} source={Images.logoPaperwork} resizeMode='contain' />
+    </View>
+  );
+
   renderTitle = () => (
     <View style={styles.titleContainer}>
       <Text style={styles.labelBeta}>beta</Text>
     </View>
   );
+
   renderCloseButton = () => (
     <TouchableOpacity onPress={this.onCloseDrawerBar}>
       <Icon name="close" style={styles.iconClose} onPress={this.onCloseDrawerBar} />
     </TouchableOpacity>
   );
+
   render() {
     return (
       <AppContainer
@@ -88,9 +107,11 @@ export class DrawBar extends Component {
         hideNavBar
       >
         <View style={styles.container}>
-          <ScrollView style={styles.contentContainer} showsVerticalScrollIndicator={false}>
+          <View style={styles.contentContainer} showsVerticalScrollIndicator={false}>
+            {this.renderHeader()}
             {this.renderDrawerSection(menuItems)}
-          </ScrollView>
+            {this.renderFooter()}
+          </View>
         </View>
       </AppContainer>
     );

@@ -1,21 +1,25 @@
 export default [{
+  title: 'Dashboard',
+  type: 'normal',
+  touchable: true,
+}, {
+  title: 'Customers',
+  type: 'normal',
+  touchable: true,
+}, {
   title: 'Calendar',
-  icon: 'location-arrow',
   type: 'normal',
   touchable: true,
 }, {
-  title: 'Customer',
-  icon: 'users',
+  title: 'Tasks',
   type: 'normal',
   touchable: true,
 }, {
-  title: 'Work Pool',
-  icon: 'question-circle',
+  title: 'Estimates',
   type: 'normal',
   touchable: true,
 }, {
-  title: 'Settings',
-  icon: 'gear',
+  title: 'Agreements',
   type: 'normal',
   touchable: true,
 }];

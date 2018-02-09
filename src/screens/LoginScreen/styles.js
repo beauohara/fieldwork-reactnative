@@ -48,4 +48,7 @@ export default StyleSheet.create({
     color: Colors.white,
     fontSize: 13,
   },
+  spinner: {
+    marginBottom: 50
+  },
 });

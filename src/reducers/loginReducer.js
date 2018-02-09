@@ -7,34 +7,33 @@ import * as Actions from "../actions/types";
 export default function loginReducer(state, action = {}) {
   switch (action.type) {
     case Actions.LOGIN_ERROR:
-      return state.withMutations(state => state
-        .set('isLoggedIn', false)
-        .set('progress', false)
-        .set('loginError', action.error));
+      return state.merge({
+        isLoggedIn: false,
+        progress: false,
+        loginError: action.error
+      });
     case Actions.LOGIN_SUCCESS:
-      return state.withMutations(state => state
-        .set('isLoggedIn', true)
-        .set('progress', false)
-        .set('authorizationId', action.token)
-        .set('username', action.email)
-        .set('password', action.password)
-        .set('token', action.token));
-    case Actions.LOGOUT_SUCCESS: {
-      return state.withMutations(state => state
-        .set('progress', false)
-        .set('isLoggedIn', false)
-        .set('token', '')
-        .set('authorizationId', '')
-        .set('username', '')
-        .set('username', '')
-        .set('password', ''));
-    }
-    case Actions.LOGOUT_ERROR: {
-      return state.withMutations(state => state
-        .set('progress', false)
-        .set('isLoggedIn', false)
-        .set('loginError', action.err));
-    }
+      return state.merge({
+        isLoggedIn: true,
+        progress: false,
+        api_key: action.api_key,
+        email: action.email,
+        password: action.password
+      });
+    case Actions.LOGOUT_SUCCESS:
+      return state.merge({
+        isLoggedIn: false,
+        progress: false,
+        api_key: '',
+        email: '',
+        password: ''
+      });
+    case Actions.LOGOUT_ERROR:
+      return state.merge({
+        isLoggedIn: false,
+        progress: false,
+        loginError: action.error
+      });
     default:
       return state
   }

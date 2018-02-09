@@ -1,10 +1,6 @@
 import { StyleSheet } from 'react-native';
-import { CommonStyles } from '../../themes';
-import Config from '../../config';
-
+import { CommonStyles, Colors } from '../../themes';
 export default StyleSheet.create({
   ...CommonStyles.screen,
-  venueContainer: {
-    flex: 1,
-  },
+
 });

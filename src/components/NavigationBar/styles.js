@@ -37,9 +37,10 @@ export default {
   },
   title: {
     flex: 1,
-    color: Colors.primary,
+    color: Colors.generalGray,
     fontFamily: Fonts.type.primary,
-    fontSize: Fonts.size.h5,
+    fontWeight: '500',
+    fontSize: Fonts.size.large,
     textAlign: 'center',
   },
   logo: {
@@ -71,6 +72,10 @@ export default {
   navButtonRight: {
     ...navButton,
     alignItems: 'flex-end',
+  },
+  navButtonImage: {
+    width: 20,
+    height: 20,
   },
   icon: {
     alignSelf: 'center',

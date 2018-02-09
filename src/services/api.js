@@ -17,7 +17,9 @@ export function login(email, password) {
       email,
       password,
     })
-    .then(user => user.json())
+    .then(user => {
+      return user.data;
+    })
     .catch(error => {
       console.log(error);
     });

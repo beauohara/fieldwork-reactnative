@@ -1,24 +1,7 @@
-import type { ThunkAction } from './types';
+import * as Actions from "./types";
 
-function setVenues(venues: Array): ThunkAction {
-  return (dispatch) => {
-    dispatch({
-      type: 'SET_VENUES',
-      data: venues,
-    });
-  };
+export function loadAllCustomers() {
+  return {
+    type: Actions.LOAD_CUSTOMERS
+  }
 }
-
-function addVenues(venues: Array): ThunkAction {
-  return (dispatch) => {
-    dispatch({
-      type: 'ADD_VENUES',
-      data: venues,
-    });
-  };
-}
-
-module.exports = {
-  setVenues,
-  addVenues,
-};

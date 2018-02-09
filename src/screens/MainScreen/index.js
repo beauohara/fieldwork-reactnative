@@ -24,9 +24,9 @@ export class MainScreen extends Component {
   render() {
     return (
       <AppContainer
+        title='Customer'
         navigation={this.props.navigation}
         renderLeftButton={NavItems.hamburgerButton(this.props.navigation)}
-        renderRightButton={NavItems.mapButton(this.onClickMap)}
       >
         <View style={styles.mainContainer}>
           

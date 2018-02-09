@@ -31,8 +31,8 @@ export default {
     color: Colors.primary,
   },
   titleContainer: {
-    flex: 1,
-    flexDirection: 'row',
+    // flex: 1,
+    // flexDirection: 'row',
   },
   icon: {
     width: 30,

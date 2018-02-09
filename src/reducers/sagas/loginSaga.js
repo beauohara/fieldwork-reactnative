@@ -9,12 +9,12 @@ import * as LoginActions from "../../actions/auth";
 
 function* authorize(email, password) {
   try {
-    const token = yield call(Api.login, email, password);
-    if (!token.message) {
-      yield put(LoginActions.setLoginSuccess(token, email, password));
-      return token;
+    const tokenData = yield call(Api.login, email, password);
+    if (tokenData.api_key) {
+      yield put(LoginActions.setLoginSuccess(tokenData.api_key, email, password));
+      return tokenData;
     } 
-    yield put(LoginActions.setLoginError(token));
+    yield put(LoginActions.setLoginError(tokenData));
     return undefined;
     
   } catch (error) {

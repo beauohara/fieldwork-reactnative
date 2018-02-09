@@ -19,10 +19,10 @@ export function setLoginError(error) {
   }
 }
 
-export function setLoginSuccess(token, email, password) {
+export function setLoginSuccess(api_key, email, password) {
   return {
     type: Actions.LOGIN_SUCCESS,
-    token,
+    api_key,
     email,
     password
   }

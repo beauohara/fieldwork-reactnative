@@ -8,12 +8,12 @@ export default {
   },
   contentContainer: {
     flex: 1,
-    paddingVertical: Metrics.marginVertical,
-    // backgroundColor: Colors.menuBack,
+    backgroundColor: Colors.secondary,
   },
   sectionContainer: {
     // backgroundColor: Colors.background,
-    marginTop: 80,
+    marginTop: 20,
+    paddingLeft: 40,
   },
   footer: {
     marginTop: Metrics.largeMargin / 2,
@@ -58,4 +58,30 @@ export default {
     fontFamily: Fonts.type.emphasis,
     fontSize: Fonts.size.input,
   },
+
+  logoHeaderContent: {
+    height: 64,
+    borderBottomWidth: 1,
+    borderBottomColor: Colors.borderColor,
+    paddingLeft: 20,
+    marginTop: 20,
+    justifyContent: 'center'
+  },
+  logoImage: {
+    width: 38,
+    height: 38,
+  },
+
+  logoFooterContent: {
+    height: 64,
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  logoPaperwork: {
+    height: 12,
+  }
 };

@@ -1,5 +1,13 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, TouchableOpacity, Animated, Image, Text, Easing } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  Animated,
+  Image,
+  Text,
+  Easing,
+} from 'react-native';
 import { connect } from 'react-redux';
 import { NavigationBar } from '../components';
 import { Metrics, Colors, Fonts } from '../themes';
@@ -69,53 +77,53 @@ export default class AppContainer extends Component {
       top: new Animated.Value(-Metrics.navBarHeight),
     };
   }
+
   onAvatarClicked = () => {
     if (!this.state.showExtraUserInfo) {
       this.setState({ showExtraUserInfo: true });
-      Animated.timing(
-        this.state.top, { toValue: 0, easing: Easing.linear, duration: 300 }
-      ).start();
+      Animated.timing(this.state.top, {
+        toValue: 0,
+        easing: Easing.linear,
+        duration: 300,
+      }).start();
     } else {
       this.onCloseBar();
     }
   };
+
   onCloseBar = () => {
-    Animated.timing(
-      this.state.top, { toValue: -Metrics.navBarHeight }
-    ).start();
+    Animated.timing(this.state.top, { toValue: -Metrics.navBarHeight }).start();
     setTimeout(() => {
       this.setState({ showExtraUserInfo: false });
     }, 300);
   };
+
   onLogout = () => {
     this.onCloseBar(true);
     this.props.navigation.navigate('LoginScreen');
     this.props.signOut();
   };
+
   renderExtraBar() {
     return (
       <View style={styles.bottomNavbarContainer}>
-        <Text style={styles.label}>
-          Test
-        </Text>
+        <Text style={styles.label}>Test</Text>
       </View>
     );
   }
+
   render() {
     const { hideNavBar, children } = this.props;
     return (
       <View style={styles.container}>
-        {!hideNavBar &&
-        <NavigationBar
-          {...this.props}
-          onAvatarClicked={this.onAvatarClicked}
-        />
-        }
-        <View style={styles.viewContainer}>
-          {children}
-        </View>
+        {!hideNavBar && (
+          <NavigationBar
+            {...this.props}
+            onAvatarClicked={this.onAvatarClicked}
+          />
+        )}
+        <View style={styles.viewContainer}>{children}</View>
       </View>
     );
   }
 }
-
