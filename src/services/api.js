@@ -2,8 +2,8 @@
  * Created by borys-duda
  */
 
-import constants from '../constants';
 import axios from 'axios';
+import constants from '../constants';
 
 function getAuthHeader() {
   return {
@@ -21,6 +21,6 @@ export function login(email, password) {
       return user.data;
     })
     .catch(error => {
-      console.log(error);
+      return error.message;
     });
 }

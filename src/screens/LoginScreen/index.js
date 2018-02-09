@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
-import { View, Image, Text, TextInput, TouchableOpacity } from 'react-native';
+import { View, Image, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
 import { login } from '../../actions/auth';
@@ -29,16 +29,31 @@ class LoginScreen extends Component {
     if (newProps.auth && newProps.auth.get('isLoggedIn') === true) {
       this.setState({ visible: false });
       this.props.navigation.dispatch(resetAction);
+    } else if (newProps.auth && newProps.auth.get('loginError') && newProps.auth.get('loginError') !== '') {
+      this.setState({ visible: false }, () => {
+        setTimeout(() => {
+          Alert.alert(
+            'Authentication Failed',
+            'Your username or password are incorrect.',
+            [
+              {text: 'OK', onPress: () => console.log('OK Pressed')},
+            ],
+            { cancelable: true }
+          )
+        }, 50);
+      });
     }
   }
 
   onPressLogin = () => {
     const { email, password } = this.state;
-    this.setState({ visible: true });
-    this.props.login(email, password);
+    this.setState({ visible: true }, () => {
+      this.props.login(email, password);
+    });
   };
 
   render() {
+    console.log("Isvisible=", this.state.visible);
     return (
       <View style={styles.container}>
         <View style={styles.logoPanel}>

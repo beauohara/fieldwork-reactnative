@@ -21,7 +21,7 @@ const combinedReducers = combineReducers({
 const initialState = new Immutable.Map({
   auth: Immutable.Map({
     isLoggedIn: false,
-    loginError: {},
+    loginError: '',
     email:'',
     password:'',
     api_key:''
