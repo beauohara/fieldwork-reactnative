@@ -17,8 +17,23 @@ export function login(email, password) {
       email,
       password,
     })
-    .then(user => {
-      return user.data;
+    .then(res => {
+      return res.data;
+    })
+    .catch(error => {
+      return error.message;
+    });
+}
+
+export function loadAllCustomers(api_key) {
+  return axios
+    .get(`${constants.api_base}/customers`, {
+      params: {
+        api_key
+      }
+    })
+    .then(res => {
+      return res.data;
     })
     .catch(error => {
       return error.message;

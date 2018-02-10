@@ -19,6 +19,7 @@ export default class App extends Component {
     this.state = {
       initialRoute: 'LoginScreen',
     };
+    console.disableYellowBox = true;
   }
 
   componentWillMount() {

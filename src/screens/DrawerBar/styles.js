@@ -1,4 +1,5 @@
 import { Metrics, Colors, Fonts } from '../../themes';
+import { ifIphoneX } from 'react-native-iphone-x-helper'
 
 export { Colors };
 export default {
@@ -9,6 +10,11 @@ export default {
   contentContainer: {
     flex: 1,
     backgroundColor: Colors.secondary,
+    ...ifIphoneX({
+      paddingTop: 30
+    }, {
+      paddingTop: 0
+    })
   },
   sectionContainer: {
     // backgroundColor: Colors.background,

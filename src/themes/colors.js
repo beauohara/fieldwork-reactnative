@@ -8,6 +8,7 @@ export default {
   generalGray: '#51565D',
   menuItemColor: 'white',
   borderColor: '#474C54',
+  separatorColor: '#E8EBF1',
 
   warning: '#F0AD4E',
   danger: '#D9534F',

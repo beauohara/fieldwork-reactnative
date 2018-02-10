@@ -7,7 +7,8 @@ import * as Actions from "../../actions/types";
 import * as Api from "../../services/api";
 import * as LoginActions from "../../actions/auth";
 
-function* authorize(email, password) {
+export function* login(action) {
+  const { email, password} = action;
   try {
     const tokenData = yield call(Api.login, email, password);
     if (tokenData.api_key) {
@@ -20,13 +21,6 @@ function* authorize(email, password) {
   } catch (error) {
     yield put(LoginActions.setLoginError(error));
     return undefined;
-  }
-}
-
-export function* loginFlow() {
-  while (true) {
-    const {email, password} = yield take(Actions.LOGIN_ACTION);
-    yield call(authorize, email, password);
   }
 }
 

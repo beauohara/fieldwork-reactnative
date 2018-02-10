@@ -11,11 +11,12 @@ import {applyMiddleware, compose, createStore} from "redux";
 import {AsyncStorage} from "react-native";
 import createSagaMiddleware from "redux-saga";
 import LoginReducer from "../reducers/loginReducer";
-
-import { loginFlow } from "../reducers/sagas/loginSaga";
+import CustomerReducer from '../reducers/customerReducer';
+import rootSaga from "../reducers/sagas";
 
 const combinedReducers = combineReducers({
   auth: LoginReducer,
+  customers: CustomerReducer,
 });
 
 const initialState = new Immutable.Map({
@@ -26,6 +27,7 @@ const initialState = new Immutable.Map({
     password:'',
     api_key:''
   }),
+  customers: []
 
 });
 
@@ -50,7 +52,7 @@ export default function configureStore() {
   );
   return {
     ...store, runSaga: [
-      sagaMiddleware.run(loginFlow),
+      sagaMiddleware.run(rootSaga),
     ]
   };
 }

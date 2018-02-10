@@ -1,4 +1,5 @@
 import { Dimensions, Platform } from 'react-native';
+import { ifIphoneX } from 'react-native-iphone-x-helper'
 
 const { width, height } = Dimensions.get('window');
 
@@ -17,8 +18,13 @@ const metrics = {
   searchBarHeight: 30,
   screenWidth: width < height ? width : height,
   screenHeight: width < height ? height : width,
-  navBarHeight: (Platform.OS === 'ios') ? 64 : 56 + 24,
-  topStatusBarHeight: (Platform.OS === 'ios') ? 20 : 24,
+  ...ifIphoneX({
+    navBarHeight: 44 + 44,
+    topStatusBarHeight: 44,
+  }, {
+    navBarHeight: (Platform.OS === 'ios') ? 64 : 56 + 24,
+    topStatusBarHeight: (Platform.OS === 'ios') ? 20 : 24,
+  }),
   navBarLeftBtnIcon: (Platform.OS === 'ios') ? 30 : 25,
   buttonRadius: 4,
   icons: {
